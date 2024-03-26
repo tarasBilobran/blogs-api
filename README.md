@@ -1,7 +1,19 @@
+## How to run?
+Make sure tools `docker` and `docker-compose` are installed in your system.
+
+Run 
+```
+docker-compose up --build
+```
+
+After that you should be able to access the webserver at `http://127.0.0.1:8080`.
+
+Swagger docs are available here `http://127.0.0.1:8080/docs`.
+
 ## Requirements
 The project is written and tested using Python==3.10.13
 
-## Running tests
+## Running test db
 
 ```bash
 docker run -d --name backend-tests \
@@ -12,7 +24,7 @@ docker run -d --name backend-tests \
 postgres:14
 ```
 
-## 
+##  Running db for migrations
 
 ```bash
 docker run -d \

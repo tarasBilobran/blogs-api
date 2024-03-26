@@ -8,7 +8,10 @@ COPY service service/
 COPY migrations migrations/
 COPY alembic.ini alembic.ini
 COPY requirements.txt requirements.txt
+COPY entrypoint.sh entrypoint.sh
 
+RUN apt update && apt install -y graphviz graphviz-dev
+RUN apt install -y netcat-traditional
 RUN pip install -r requirements.txt
 
 ENV PORT=8080 \
@@ -20,6 +23,4 @@ ENV PORT=8080 \
 
 EXPOSE $PORT
 
-ENTRYPOINT alembic upgrade head && gunicorn \
-    -k uvicorn.workers.UvicornWorker \
-    -b :$PORT service.app:APP
+ENTRYPOINT sh entrypoint.sh
